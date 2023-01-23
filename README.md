@@ -1,1 +1,1 @@
-# projeto-react-api
+# Projeto React API Pokedéx

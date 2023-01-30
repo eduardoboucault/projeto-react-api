@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { BASE_URL } from "../variables/BASE_URL"
 import axios from "axios";
+import { ChakraProvider } from '@chakra-ui/react'
 
 import React from 'react'
 
@@ -12,14 +13,27 @@ function GlobalStates(props) {
     //* Criar estados necessários;
 
     const [pokelist, setPokelist] = useState([]);
-    const [pokedex, setPokedex] = useState([]);
+    const [pokedex, setPokeDex] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     //* Criar useEffect necessário; useEffect só podem ser utilizados em hooks ou componentes;
 
-
+    useEffect(() => {
+        getPokemonData();
+    }, []);
 
     //* Criar função de requisição para consumir API; Necessário estrutura completa(async/await, try/catch) para evitar bugs futuros.
 
+    const getPokemonData = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/pokemon`);
+            setPokelist(response.data.results);
+            setLoading(true);
+        } catch (error) {
+            console.log("Erro ao buscar lista de pokemons");
+            console.log(error);
+        }
+    };
 
     //* Criar funções necessárias;
 
@@ -30,7 +44,7 @@ function GlobalStates(props) {
 
         if (!isAlreadyOnPokedex) {
             const newPokedex = [...pokedex, pokemonToAdd];
-            setPokedex(newPokedex);
+            setPokeDex(newPokedex);
         }
     };
 
@@ -39,7 +53,7 @@ function GlobalStates(props) {
             (pokemonInPokedex) => pokemonInPokedex.name !== pokemonToRemove.name
         );
 
-        setPokedex(newPokedex);
+        setPokeDex(newPokedex);
     };
 
     //* Criar objeto de contexto global;
@@ -47,9 +61,9 @@ function GlobalStates(props) {
     const context = {
         pokelist: pokelist,
         pokedex: pokedex,
-        setPokelist: setPokelist,
         addToPokedex: addToPokedex,
-        removeFromPokedex: removeFromPokedex
+        removeFromPokedex: removeFromPokedex,
+        loading: loading
     }
 
     //* Englobar no App o GlobalContext.Provider com valor do objeto de contexto;
@@ -60,7 +74,9 @@ function GlobalStates(props) {
         <GlobalContext.Provider
             value={context}
         >
-            {props.children} 
+            <ChakraProvider>
+                {props.children}
+            </ChakraProvider>
 
         </GlobalContext.Provider>
     )

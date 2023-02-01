@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { goToPokedex } from '../../Router/coordinator'
+import { goToPokedex, goToHome } from '../../Router/coordinator'
 
 const Details = () => {
 
@@ -9,8 +9,9 @@ const Details = () => {
   return (
 
     <div>
-      <h1>Details</h1>
       <button onClick={() => goToPokedex(navigate)}>Pokedex</button>
+      <br/>
+      <button onClick={() => goToHome(navigate)}>Home</button>
     </div>
 
   )

@@ -1,11 +1,12 @@
 import React from 'react'
-import { HomeStyle } from './styled';
+import { HomeStyle, ConteinerStyle } from './styled';
 import { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import PokemonCard from '../../components/PokemonCard/PokemonCard'
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
+import { goToDetails } from '../../Router/coordinator';
 
 //* Para usar o contexto global que recebe os valores dos objetos, precisamos importar useContext e a variável global de contexto;
 
@@ -17,23 +18,31 @@ const Home = () => {
 
   //* Passar os valores a serem consumidos via objeto desestruturado com as variáveis que serão utilizadas e o valor é a variável context;
 
-  const { pokelist, pokedex, addToPokedex, loading } = context
-
-  const navigate = useNavigate()
-
+  const { pokedex, addToPokedex, loading, pokemon } = context
+ 
   return (
 
     <HomeStyle>
+
       <Header />
-      {pokelist.lenght > 0 &&
-      pokelist.map((pokemon, index) => {
-         <PokemonCard
-          key={index}
+
+      <ConteinerStyle>
+      {pokemon?.map((pokemon) => {
+        return <PokemonCard
+          key={pokemon.id}
+          id={pokemon.id}
           name={pokemon.name}
-          url={pokemon.url}
+          sprites={pokemon.sprites}
+          addToPokedex={addToPokedex}
+          pokedex={pokedex}
+          types={pokemon.types}
+          pokemon={pokemon}
+          goToDetails={goToDetails}
         />
       })}
-      {!loading && <Loading/>}
+      {!loading && <Loading />}
+      </ConteinerStyle>
+
     </HomeStyle>
 
   )

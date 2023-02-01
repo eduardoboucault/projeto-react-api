@@ -4,7 +4,6 @@ import { goToDetails, goToHome } from '../../Router/coordinator'
 import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
-
 const Pokedex = () => {
 
   const context = useContext(GlobalContext)
@@ -14,8 +13,9 @@ const Pokedex = () => {
   return (
 
     <div>
-      <h1>Pokedex</h1>
+
       <button onClick={() => goToHome(navigate)}>Home</button>
+      <br/>
       <button onClick={() => goToDetails(navigate)}>Details</button>
 
     </div>

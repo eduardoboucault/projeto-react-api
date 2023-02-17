@@ -49,25 +49,26 @@ function GlobalStates(props) {
 
     //* Criar funções necessárias; (Adicionar pokémon a pokedex(carrinho)); (Remover o pokémon da pokedex);
 
-    function addToPokedex(pokemonToAdd) {
+    const addToPokedex = (pokemonToAdd) => {
         const isAlreadyOnPokedex = pokedex.find(
-            (pokemonInPokedex) => pokemonInPokedex.name === pokemonToAdd.name
+          (pokemonInPokedex) => pokemonInPokedex.name === pokemonToAdd.name
         );
-
+    
         if (!isAlreadyOnPokedex) {
-            const newPokedex = [...pokedex, pokemonToAdd];
-            setPokeDex(newPokedex);
+          const newPokedex = [...pokedex, pokemonToAdd];
+          setPokeDex(newPokedex);
+          alert('pokemon adicionado')
         }
-    }
+      };
+    
+    //* Remover pokémon
 
     const removeFromPokedex = (pokemonToRemove) => {
-        const newPokedex = pokedex.filter(
-            (pokemonInPokedex) => pokemonInPokedex.name !== pokemonToRemove.name
-        );
-
+        const newPokedex = pokedex.filter((pokemonInPokedex) => console.log(pokemonInPokedex.name) !== console.log(pokemonToRemove.name));
         setPokeDex(newPokedex);
-    };
-
+      };
+      
+      
     //* Criar objeto de contexto global;
 
     const context = {

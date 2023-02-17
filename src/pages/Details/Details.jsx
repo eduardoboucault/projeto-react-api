@@ -1,18 +1,18 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { goToPokedex, goToHome } from '../../Router/coordinator'
+import  CardDetails  from '../../components/CardDetails/CardDetails'
+import Header from '../../components/Header/Header'
+import { DetailsStyleContainer } from './styled'
 
 const Details = () => {
 
-  const navigate = useNavigate()
-
   return (
 
-    <div>
-      <button onClick={() => goToPokedex(navigate)}>Pokedex</button>
-      <br/>
-      <button onClick={() => goToHome(navigate)}>Home</button>
-    </div>
+    <DetailsStyleContainer>
+      <Header/>
+
+      <CardDetails/>
+
+    </DetailsStyleContainer>
 
   )
 }

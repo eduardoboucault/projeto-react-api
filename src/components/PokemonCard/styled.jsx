@@ -1,33 +1,39 @@
 import styled from "styled-components";
 
 export const CardStyle = styled.div`
-display:flex;
-flex-direction: row;
-width: 30%;
-height: 15rem;
-padding: 1rem;
-border-radius: 1rem;
-border: black;
-order: 5;
-background-color: lightcoral;
+  padding: 16px;
+  min-width: 400px;
+  max-width: 440px;
+  height: 210px;
+  background-color: #0b3e0b;
+  border-radius: 12px;
+  display: flex;
+  position: relative;
+  margin: 50px;
+  color: #ffffff;
 `
 
 export const ButtonStyle = styled.button`
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 4px 10px;
-width: 146px;
-height: 38px;
-background: #FFFFFF;
-border-radius: 8px;
-flex: none;
-order: 1;
-flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  width: 146px;
+  height: 38px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 22px;
+  z-index: 2;
+  color: #000;
 `
 
 export const DetailBtnStyle = styled.button`
+position:relative;
 width: 74px;
 height: 24px;
 font-family: 'Poppins';
@@ -40,41 +46,60 @@ color: #FFFFFF;
 flex: none;
 order: 0;
 flex-grow: 0;
+top: 5%;
 `
 
 export const TitleName = styled.h1`
-width: 159px;
-height: 39px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 39px;
-color: #FFFFFF;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 10px;
 `
 
 export const IdStyle = styled.p`
-width: 30px;
-height: 19px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 19px;
-color: #FFFFFF;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
 `
 
 export const TypesStyle = styled.li`
+position:relative;
 list-style:none;
 `
 
 export const ImgStyle = styled.img`
-justify-self: flex-end;
-width:10rem;
-height:10rem;
+  width: 193px;
+  height: 193px;
+  position: absolute;
+  top: -60px;
+  right: 0;
+  z-index: 2;
 `
 
-export const ContainerButton = styled.div`
-display:flex;
-justify-content: space-between;
+export const PokeballLogo = styled.img`
+  position: absolute;
+  left: 35%;
+  top: 0;
 `
+const collors = {
+  poison: '#AD61AE',
+  grass: '#70B873',
+  fire: '#EAAB7D',
+  flying: '#6892B0',
+  water: '#71C3FF',
+  dark: '#5C5365',
+  bug: '#76A866',
+  normal: '#BF9762',
+  dragon: '#0A6CBF',
+  eletric: '#F4D23B',
+  fairy: '#EC8FE6',
+  fighting: '#CE4069',
+  ghost: '#5269AC',
+  ground: '#D97745',
+  ice: '#74CEC0',
+  psychic: '#F67176',
+  rock: '#C7B78B',
+  steel: '#BBBBBB'
+}

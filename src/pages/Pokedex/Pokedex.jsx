@@ -1,24 +1,33 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { goToDetails, goToHome } from '../../Router/coordinator'
+import PokemonCard from '../../components/PokemonCard/PokemonCard'
 import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
+import { HomeStyle, ConteinerStyle } from './styled'
+import Header from '../../components/Header/Header'
 
 const Pokedex = () => {
 
   const context = useContext(GlobalContext)
-  const { pokedex, removeFromPokedex } = context
-  const navigate = useNavigate()
-
+  const { pokedex, pokemon } = context
+  console.log(pokedex)
   return (
 
-    <div>
-
-      <button onClick={() => goToHome(navigate)}>Home</button>
-      <br/>
-      <button onClick={() => goToDetails(navigate)}>Details</button>
-
-    </div>
+    <HomeStyle>
+      <Header />
+      <ConteinerStyle>
+        {pokedex?.map((pokemon) => {
+          return <PokemonCard
+            key={pokemon.id}
+            id={pokemon.id}
+            name={pokemon.name}
+            sprites={pokemon.sprites}
+            types={pokemon.types}
+            onClick={'removeFromPokedex'}
+            value={'Excluir'}
+          />
+        })}
+      </ConteinerStyle>
+    </HomeStyle>
 
   )
 }

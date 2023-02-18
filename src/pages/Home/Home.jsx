@@ -1,5 +1,5 @@
 import React from 'react'
-import { HomeStyle, ConteinerStyle } from './styled';
+import { HomeStyle, ContainerStyle } from './styled';
 import { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import PokemonCard from '../../components/PokemonCard/PokemonCard'
@@ -17,28 +17,28 @@ const Home = () => {
 
   //* Passar os valores a serem consumidos via objeto desestruturado com as variáveis que serão utilizadas e o valor é a variável context;
 
-  const { pokedex, loading, pokemon } = context
-  
+  const { loading, pokemon } = context
+
   return (
 
     <HomeStyle>
       <Header />
-      <ConteinerStyle>
+      <ContainerStyle>
         {pokemon?.map((pokemon) => {
           return <PokemonCard
-            key={pokemon.id}
-            id={pokemon.id}
+            key={pokemon.name}
             name={pokemon.name}
+            id={pokemon.id}
             sprites={pokemon.sprites}
-            onClick={'addToPokedex'}
             types={pokemon.types}
+            onClick={'addToPokedex'}
+            value={'Capturar!'}
             pokemon={pokemon}
             goToDetails={goToDetails}
-            value={'Capturar!'}
           />
         })}
         {!loading && <Loading />}
-      </ConteinerStyle>
+      </ContainerStyle>
     </HomeStyle>
 
   )

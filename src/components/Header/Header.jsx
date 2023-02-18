@@ -1,28 +1,22 @@
 import React from 'react'
+import { HeaderStyle, LogoContainer, Logo, ButtonContainer, ButtonExclude, ButtonPokedex, ButtonAllPokemon } from './styled'
 import { goToPokedex, goToHome } from '../../Router/coordinator'
-import { HeaderStyle } from './styled'
 import { useNavigate } from 'react-router-dom'
-import { ButtonExclude, ButtonPokedex, ButtonAllPokemon } from './styled'
 
 function Header() {
   const navigate = useNavigate()
+
   return (
     <HeaderStyle>
-      <div>
-      <img src={'pokemonlogo.png'} />
-      </div>
+      <LogoContainer>
+        <Logo src={'pokemonlogo.png'} />
+      </LogoContainer>
 
-      <div>
-      <ButtonAllPokemon onClick={() => goToHome(navigate)}>Todos os Pokémon</ButtonAllPokemon>
-      </div>
-
-      <div>
-      <ButtonPokedex onClick={() => goToPokedex(navigate)}>Pokédex</ButtonPokedex>
-      </div>
-
-      <div>
-      <ButtonExclude>Excluir Pokémon</ButtonExclude>
-      </div>
+      <ButtonContainer>
+        <ButtonAllPokemon onClick={() => goToHome(navigate)}>Todos os Pokémon</ButtonAllPokemon>
+        <ButtonPokedex onClick={() => goToPokedex(navigate)}>Pokédex</ButtonPokedex>
+        <ButtonExclude>Excluir Pokémon</ButtonExclude>
+      </ButtonContainer>
     </HeaderStyle>
   )
 }

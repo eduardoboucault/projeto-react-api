@@ -2,31 +2,32 @@ import React from 'react'
 import PokemonCard from '../../components/PokemonCard/PokemonCard'
 import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import { HomeStyle, ConteinerStyle } from './styled'
+import { HomeStyle, ContainerStyle } from './styled'
 import Header from '../../components/Header/Header'
 
 const Pokedex = () => {
 
   const context = useContext(GlobalContext)
-  const { pokedex, pokemon } = context
-  console.log(pokedex)
+  const { pokedex } = context
+
   return (
 
     <HomeStyle>
       <Header />
-      <ConteinerStyle>
+      <ContainerStyle>
         {pokedex?.map((pokemon) => {
           return <PokemonCard
             key={pokemon.id}
-            id={pokemon.id}
             name={pokemon.name}
+            id={pokemon.id}
             sprites={pokemon.sprites}
             types={pokemon.types}
             onClick={'removeFromPokedex'}
             value={'Excluir'}
+            pokemon={pokemon}
           />
         })}
-      </ConteinerStyle>
+      </ContainerStyle>
     </HomeStyle>
 
   )

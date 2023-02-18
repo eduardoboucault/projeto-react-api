@@ -15,6 +15,7 @@ function GlobalStates(props) {
     const [pokedex, setPokeDex] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pokemon, setPokemon] = useState([]);
+    const [selectedPokemon, setSelectedPokemon] = useState([]);
 
     //* Criar useEffect necessário; useEffect só podem ser utilizados em hooks ou componentes; Ele armazena algo para rodar assim que chamado;
 
@@ -51,33 +52,41 @@ function GlobalStates(props) {
 
     const addToPokedex = (pokemonToAdd) => {
         const isAlreadyOnPokedex = pokedex.find(
-          (pokemonInPokedex) => pokemonInPokedex.name === pokemonToAdd.name
+            (pokemonInPokedex) => pokemonInPokedex.name === pokemonToAdd.name
         );
-    
+
         if (!isAlreadyOnPokedex) {
-          const newPokedex = [...pokedex, pokemonToAdd];
-          setPokeDex(newPokedex);
-          alert('pokemon adicionado')
+            const newPokedex = [...pokedex, pokemonToAdd];
+            setPokeDex(newPokedex);
+            alert('Gotcha! O Pokémon foi adicionado a sua Pokédex')
         }
-      };
-    
+    };
+
     //* Remover pokémon
 
     const removeFromPokedex = (pokemonToRemove) => {
-        const newPokedex = pokedex.filter((pokemonInPokedex) => console.log(pokemonInPokedex.name) !== console.log(pokemonToRemove.name));
+        const newPokedex = pokedex.filter((pokemonInPokedex) => pokemonInPokedex.name !== pokemonToRemove.name);
         setPokeDex(newPokedex);
-      };
-      
-      
+        alert('Oh,no! O Pokémon foi removido da sua Pokédex')
+    };
+
+    const handlePokemonClick = (poke) => {
+        const newSelectPoke = []
+        newSelectPoke.push(poke)
+        setSelectedPokemon(newSelectPoke);
+    };
+
     //* Criar objeto de contexto global;
 
     const context = {
         pokelist: pokelist,
         pokedex: pokedex,
+        pokemon: pokemon,
+        selectedPokemon: selectedPokemon,
+        loading: loading,
         addToPokedex: addToPokedex,
         removeFromPokedex: removeFromPokedex,
-        loading: loading,
-        pokemon: pokemon
+        handlePokemonClick: handlePokemonClick
     }
 
     //* Englobar no App o GlobalContext.Provider com valor do objeto de contexto;
